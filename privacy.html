@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — ArtiMod</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --surface: #10141c;
+      --border: #1e2433;
+      --accent: #4f8ef7;
+      --accent-dim: rgba(79,142,247,0.12);
+      --accent-glow: rgba(79,142,247,0.25);
+      --text: #e2e8f4;
+      --text-muted: #6b7a99;
+      --text-dim: #3d4d6b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+
+    .page-header { margin-bottom: 56px; }
+
+    .page-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .section {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 .num {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul { list-style: none; margin: 14px 0; }
+
+    ul li {
+      color: var(--text-muted);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      font-weight: 300;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--accent-dim);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+
+    .callout.good {
+      border-color: #4ff7a0;
+      background: rgba(79,247,160,0.08);
+    }
+
+    .callout p { margin: 0; font-size: 14px; }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .data-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: left;
+      padding: 10px 16px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .data-table td {
+      padding: 12px 16px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      font-weight: 300;
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table td:first-child {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 48px;
+    }
+
+    .contact-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .nav-links a:first-child { margin-left: 0; }
+      footer { flex-direction: column; }
+      .data-table { font-size: 13px; }
+      .data-table td, .data-table th { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+  <a href="index.html" class="logo">ArtiMod</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="tos.html" >Terms</a>
+    <a href="privacy.html" class="active">Privacy</a>
+  </div>
+</nav>
+
+    <div class="page-header">
+      <div class="page-tag">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Last updated: March 21, 2026 &nbsp;·&nbsp; Effective immediately</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">01</span> Overview</h2>
+      <p>ArtiMod is committed to being transparent about what data we collect, why we collect it, and how it is used. This policy explains our data practices in plain language.</p>
+      <div class="callout good">
+        <p>ArtiMod does not sell your data. We do not serve ads. We collect only what is necessary for the bot to function.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">02</span> What Data We Collect</h2>
+      <p>ArtiMod collects and stores the following data on a per-server basis:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Why We Collect It</th>
+            <th>Retention</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Guild (server) ID</td>
+            <td>To store your server's configuration settings</td>
+            <td>Until bot is removed</td>
+          </tr>
+          <tr>
+            <td>User IDs</td>
+            <td>To track warnings and moderation actions per user</td>
+            <td>Until cleared or bot removed</td>
+          </tr>
+          <tr>
+            <td>User display names</td>
+            <td>For human-readable moderation logs</td>
+            <td>Until cleared or bot removed</td>
+          </tr>
+          <tr>
+            <td>Message content</td>
+            <td>Sent to AI for moderation analysis; stored in incident log</td>
+            <td>90 days rolling</td>
+          </tr>
+          <tr>
+            <td>Channel IDs</td>
+            <td>To identify where incidents occurred</td>
+            <td>Until bot removed</td>
+          </tr>
+          <tr>
+            <td>Moderation actions</td>
+            <td>Warnings, timeouts, bans — logged for server admin review</td>
+            <td>Until cleared or bot removed</td>
+          </tr>
+          <tr>
+            <td>Server configuration</td>
+            <td>Log channel, exempt roles, word lists, settings</td>
+            <td>Until bot removed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">03</span> What We Do NOT Collect</h2>
+      <ul>
+        <li>Messages that do not trigger moderation checks</li>
+        <li>Direct messages sent to users (only embeds sent by the bot)</li>
+        <li>Voice channel activity</li>
+        <li>Email addresses, IP addresses, or any personal contact information</li>
+        <li>Payment information of any kind</li>
+        <li>Any data from users in servers where ArtiMod is not present</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">04</span> How Message Content Is Used</h2>
+      <p>When a message triggers a moderation check (contains a flagged word or link), ArtiMod sends the message content and surrounding conversation context to Anthropic's Claude API for analysis. This is necessary for the bot to make context-aware moderation decisions.</p>
+      <ul>
+        <li>Only messages that trigger a moderation check are sent to the AI</li>
+        <li>Context messages (surrounding conversation) are sent to improve accuracy</li>
+        <li>Anthropic processes this data according to their own privacy policy</li>
+        <li>Message content from flagged incidents is stored in our database for moderator review</li>
+        <li>Incident logs are retained for 90 days and then purged automatically</li>
+      </ul>
+      <div class="callout">
+        <p>You can review Anthropic's privacy policy at <strong>anthropic.com/privacy</strong> to understand how they handle data sent to their API.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">05</span> Data Storage & Security</h2>
+      <p>All ArtiMod data is stored in a SQLite database hosted on Railway's cloud infrastructure. Railway provides industry-standard security practices including encrypted storage and secure access controls.</p>
+      <p>Data is stored only for as long as necessary to provide the service. When you remove ArtiMod from your server, your server's data is eligible for deletion within 30 days.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">06</span> Data Sharing</h2>
+      <p>We share data with the following third parties, solely for the purpose of operating the service:</p>
+      <ul>
+        <li><strong>Anthropic</strong> — Message content sent for AI moderation analysis</li>
+        <li><strong>Railway</strong> — Infrastructure provider hosting our database and bot runtime</li>
+        <li><strong>Discord</strong> — The platform through which the bot operates</li>
+      </ul>
+      <p>We do not share data with advertisers, data brokers, analytics companies, or any other third parties.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">07</span> Your Rights</h2>
+      <p>As a server administrator, you have the following rights regarding data ArtiMod stores for your server:</p>
+      <ul>
+        <li><strong>Access</strong> — Use <code>/incidents</code> and <code>/warnings</code> to view stored moderation data</li>
+        <li><strong>Deletion</strong> — Use <code>/clearwarnings</code> to remove warning records for specific users</li>
+        <li><strong>Full deletion</strong> — Remove ArtiMod from your server; your data will be purged within 30 days</li>
+      </ul>
+      <p>Individual users who believe their data was collected in error may contact the server administrator, who has the tools to review and clear records.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">08</span> Children's Privacy</h2>
+      <p>ArtiMod is not directed at children under the age of 13. We do not knowingly collect data from children under 13. If you believe a child under 13 has had data collected through ArtiMod, please contact us so we can address it.</p>
+      <p>Discord's own Terms of Service require users to be at least 13 years old. ArtiMod operates within this framework.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">09</span> Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of ArtiMod after changes are posted constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Questions about your data?</h3>
+      <p style="margin: 8px 0 12px;">Reach out via Discord if you have any questions or requests regarding your data.</p>
+      <a href="tos.html">→ Read our Terms of Service</a>
+    </div>
+
+    <footer>
+      <span>© 2026 ArtiMod. All rights reserved.</span>
+      <div>
+        <a href="tos.html">Terms</a>
+        <a href="privacy.html" style="margin-left: 20px;">Privacy</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

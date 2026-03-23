@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtiMod — AI-Powered Discord Moderation</title>
+  <meta name="description" content="Context-aware Discord moderation powered by Claude AI. Game rage stays. Personal attacks don't.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── Hero ── */
+    .hero{position:relative;z-index:1;text-align:center;padding:120px 24px 80px;max-width:860px;margin:0 auto;}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(38px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:22px;}
+    .hero h1 span{color:var(--accent);}
+    .hero p{font-size:18px;color:var(--muted);font-weight:300;max-width:540px;margin:0 auto 36px;line-height:1.7;}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;}
+    .hero-sub{font-size:12px;color:var(--dim);font-family:'DM Mono',monospace;}
+    /* ── Context banner ── */
+    .ctx-banner{position:relative;z-index:1;max-width:680px;margin:0 auto 80px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;}
+    .ctx-example{padding:16px 18px;border-radius:10px;font-size:14px;line-height:1.5;}
+    .ctx-good{background:var(--green-dim);border:1px solid rgba(79,247,160,.2);}
+    .ctx-bad {background:var(--red-dim); border:1px solid rgba(247,79,79,.2);}
+    .ctx-label-good{color:var(--green);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+    .ctx-label-bad {color:var(--red); font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+    .ctx-text{color:var(--muted);font-size:13px;}
+    .ctx-vs{text-align:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--dim);}
+    /* ── Features ── */
+    .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
+    .feat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;transition:border-color .2s,transform .2s;}
+    .feat-card:hover{border-color:var(--accent-glow);transform:translateY(-2px);}
+    .feat-icon{font-size:26px;margin-bottom:14px;}
+    .feat-card h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px;}
+    .feat-card p{color:var(--muted);font-size:14px;font-weight:300;line-height:1.65;}
+    /* ── How it works ── */
+    .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+    .how-step{padding:32px 24px;text-align:center;border-right:1px solid var(--border);}
+    .how-step:last-child{border-right:none;}
+    .step-num{width:40px;height:40px;border-radius:50%;background:var(--accent-dim);border:1px solid var(--accent-glow);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);}
+    .how-step h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;}
+    .how-step p{color:var(--muted);font-size:13px;font-weight:300;}
+    /* ── CTA ── */
+    .cta-section{position:relative;z-index:1;text-align:center;padding:60px 24px;max-width:580px;margin:0 auto;}
+    .cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:14px;}
+    .cta-section p{color:var(--muted);font-size:16px;margin-bottom:28px;font-weight:300;}
+    /* ── Pricing preview ── */
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:24px;}
+    .price-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;display:flex;flex-direction:column;}
+    .price-card.featured{border-color:var(--accent);}
+    .featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;}
+    .price-tier{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .price-amount{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:4px;}
+    .price-amount span{font-size:15px;color:var(--muted);font-weight:400;}
+    .price-tagline{font-size:14px;font-weight:600;margin-bottom:8px;}
+    .price-desc{color:var(--muted);font-size:13px;font-weight:300;margin-bottom:20px;line-height:1.6;flex-grow:1;}
+    .price-btn{display:block;text-align:center;padding:11px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;margin-top:auto;}
+    .price-btn-primary{background:var(--accent);color:#fff;}
+    .price-btn-primary:hover{opacity:.88;}
+    .price-btn-outline{border:1px solid var(--border);color:var(--muted);}
+    .price-btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+    .price-btn-yellow{background:var(--yellow);color:#0a0c10;font-weight:700;}
+    .price-btn-yellow:hover{opacity:.88;}
+    .pricing-note{text-align:center;margin-top:10px;}
+    .pricing-note a{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);text-decoration:none;}
+    .pricing-note a:hover{color:var(--accent);}
+    /* Download bar */
+    .download-bar{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+    .download-banner{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+    .download-banner-text h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:6px;}
+    .download-banner-text p{color:var(--muted);font-size:14px;font-weight:300;}
+    .download-btns{display:flex;gap:10px;flex-wrap:wrap;}
+    @media(max-width:900px){.price-grid{grid-template-columns:1fr;max-width:380px;margin-left:auto;margin-right:auto;}.ctx-banner{grid-template-columns:1fr;}.ctx-vs{display:none;}.how-grid{grid-template-columns:1fr 1fr;}.how-step{border-bottom:1px solid var(--border);border-right:none;}.how-step:last-child,.how-step:nth-last-child(-n+2){border-bottom:none;}.download-banner{flex-direction:column;text-align:center;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">ArtiMod</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="https://discord.com/application-directory/1484932978357436578/store" class="nav-cta" target="_blank" rel="noopener noreferrer">Add to Discord</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="tag-label">AI-Powered Discord Moderation</div>
+  <h1>Moderation that<br><span>understands context.</span></h1>
+  <p>ArtiMod reads the conversation before acting. Game rage stays. Personal attacks don't. Powered by Claude AI.</p>
+  <div class="hero-btns">
+    <a href="https://discord.com/application-directory/1484932978357436578/store" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Add to Discord — Free</a>
+    <a href="pricing.html" class="btn btn-outline">View Plans</a>
+  </div>
+  <p class="hero-sub">No credit card required · Free tier available forever</p>
+</div>
+
+<!-- Context example -->
+<div class="ctx-banner">
+  <div class="ctx-example ctx-good">
+    <div class="ctx-label-good">✅ Allowed</div>
+    <div class="ctx-text">"that fucking boss is impossible, I've died 20 times"</div>
+  </div>
+  <div class="ctx-vs">VS</div>
+  <div class="ctx-example ctx-bad">
+    <div class="ctx-label-bad">🚫 Removed</div>
+    <div class="ctx-text">"you're a worthless piece of shit, go unalive yourself"</div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="section">
+  <div class="section-header">
+    <div class="tag-label">Features</div>
+    <h2>Everything your server needs</h2>
+    <p>One bot. Full moderation stack. No babysitting required.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🤖</div>
+      <h3>AI Context Analysis</h3>
+      <p>Claude AI reads the surrounding conversation before deciding. Game rage stays. Personal attacks don't. Zero false positives from normal venting.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🛡️</div>
+      <h3>Instant Slur Blocking</h3>
+      <p>Racial slurs, hate speech, and prohibited terms deleted instantly — no AI needed, no delay. Leet-speak, evasion phrases, and spacing variants all caught automatically.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔗</div>
+      <h3>Link Filtering</h3>
+      <p>Blocks porn sites, phishing links, scam domains, and IP grabbers automatically. Known safe domains (YouTube, Steam, Twitch) always pass through.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚠️</div>
+      <h3>Full Mod Commands</h3>
+      <p>Warn, timeout, kick, and ban via slash commands. Every action logged with reason, timestamp, and the moderator who issued it.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📋</div>
+      <h3>Incident Logs</h3>
+      <p>Every removed message logged with full AI reasoning, original content, severity, and suggested next steps. Your mods always know why.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🖥️</div>
+      <h3>Web Dashboard</h3>
+      <p>Login with Discord and manage your server settings, word lists, and incident logs directly from the web — no slash commands needed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<div class="section">
+  <div class="section-header">
+    <div class="tag-label">How It Works</div>
+    <h2>Simple. Fast. Accurate.</h2>
+  </div>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="step-num">01</div>
+      <h3>Message Sent</h3>
+      <p>A member sends a message in any monitored channel.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">02</div>
+      <h3>Word Detected</h3>
+      <p>ArtiMod scans against word lists and link filters.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">03</div>
+      <h3>AI Analyzes</h3>
+      <p>Claude reads the last N messages to understand intent.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">04</div>
+      <h3>Action Taken</h3>
+      <p>Message removed if harmful. Mods notified. User DM'd. Under 1 second.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing preview -->
+<div class="section">
+  <div class="section-header">
+    <div class="tag-label">Pricing</div>
+    <h2>Start free. Upgrade when ready.</h2>
+    <p>No credit card required to get started.</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-tier">Free</div>
+      <div class="price-amount">$0<span>/month</span></div>
+      <div class="price-tagline">The foundation.</div>
+      <div class="price-desc">Basic slur and hate speech blocking, forever free.</div>
+      <a href="https://discord.com/application-directory/1484932978357436578/store" class="price-btn price-btn-outline" target="_blank" rel="noopener noreferrer">Add for Free</a>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="price-tier">Pro</div>
+      <div class="price-amount">$9.99<span>/month</span></div>
+      <div class="price-tagline">Full AI moderation.</div>
+      <div class="price-desc">AI context moderation, link filtering, mod commands, incident logs.</div>
+      <a href="https://discord.com/application-directory/1484932978357436578/store/1485029594380894260" class="price-btn price-btn-primary" target="_blank" rel="noopener noreferrer">Subscribe to Pro</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-amount">$24.99<span>/month</span></div>
+      <div class="price-tagline">Maximum accuracy.</div>
+      <div class="price-desc">Extended AI context, white-label, analytics, priority support.</div>
+      <a href="https://discord.com/application-directory/1484932978357436578/store/1485031626428645567" class="price-btn price-btn-yellow" target="_blank" rel="noopener noreferrer">Subscribe to Enterprise</a>
+    </div>
+  </div>
+  <div class="pricing-note"><a href="pricing.html">View full plan comparison →</a></div>
+</div>
+
+<!-- Download + Store bar -->
+<div class="download-bar">
+  <div class="download-banner">
+    <div class="download-banner-text">
+      <h3>Get ArtiMod for your server</h3>
+      <p>Add the bot, subscribe to a plan, or manage your server from the dashboard.</p>
+    </div>
+    <div class="download-btns">
+      <a href="https://discord.com/oauth2/authorize?client_id=1484932978357436578&permissions=1099780130870&scope=bot+applications.commands"
+         class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+        ⬇️ Add Bot to Discord
+      </a>
+      <a href="https://discord.com/application-directory/1484932978357436578/store"
+         class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+        🛒 View Store
+      </a>
+      <a href="https://dashboard.artimod.org"
+         class="btn btn-green" target="_blank" rel="noopener noreferrer">
+        🖥️ Open Dashboard
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to fix your moderation?</h2>
+  <p>Setup takes 60 seconds. Free to start, no credit card required.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="https://discord.com/oauth2/authorize?client_id=1484932978357436578&permissions=1099780130870&scope=bot+applications.commands" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Add to Discord — Free</a>
+    <a href="about.html" class="btn btn-outline">Learn More</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <a href="index.html" class="logo">ArtiMod</a>
+    <p>© 2026 ArtiMod. All rights reserved.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="tos.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — ArtiMod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-header{padding:80px 0 52px;}
+    .page-header h1{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,52px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;}
+    .lead{font-size:18px;color:var(--muted);font-weight:300;line-height:1.7;}
+    .about-section{margin-bottom:56px;padding-bottom:56px;border-bottom:1px solid var(--border);}
+    .about-section:last-of-type{border-bottom:none;}
+    .about-section h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;margin-bottom:18px;}
+    .about-section p{color:var(--muted);font-weight:300;margin-bottom:14px;}
+    .about-section p:last-child{margin-bottom:0;}
+    .callout{border-left:3px solid var(--accent);background:var(--accent-dim);padding:18px 22px;border-radius:0 10px 10px 0;margin:24px 0;}
+    .callout p{margin:0;font-size:17px;color:var(--text);font-style:italic;font-weight:300;}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0;}
+    .stat-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;text-align:center;}
+    .stat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-1px;}
+    .stat-lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+    .closing{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;text-align:center;padding:40px 0;letter-spacing:-.5px;}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">ArtiMod</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="https://discord.com/application-directory/1484932978357436578/store" class="nav-cta" target="_blank" rel="noopener noreferrer">Add to Discord</a>
+  </div>
+</nav>
+<div class="wrap-narrow">
+  <div class="page-header">
+    <div class="tag-label">About</div>
+    <h1>Built by a gamer.<br>Built for gamers.</h1>
+    <p class="lead">ArtiMod exists because every other moderation bot got it wrong.</p>
+  </div>
+  <div class="about-section">
+    <h2>The Problem</h2>
+    <p>Running a Discord server means dealing with two kinds of messages that look identical on the surface. Someone typing "that fucking boss is impossible, I've died 20 times" and someone typing "you're a fucking idiot, go unalive yourself" both contain flagged words. Every moderation bot on the market treats them the same — delete first, ask questions never.</p>
+    <p>The result is mod teams drowning in false positives, members frustrated over removed vent messages, and actual toxic behavior slipping through because the bot already cried wolf twice that hour.</p>
+    <div class="callout"><p>"We built ArtiMod to fix that."</p></div>
+  </div>
+  <div class="about-section">
+    <h2>How It Works</h2>
+    <p>When ArtiMod detects a flagged word, it doesn't immediately act. It reads the surrounding conversation and sends everything to Claude AI for analysis. The AI asks one question: is this person attacking someone, or are they just passionate?</p>
+    <p>Game rage stays. Trash talk between friends stays. Personal attacks, slurs, and self-harm directions get removed — with a DM to the user and a full notification to your mod team including the AI's reasoning.</p>
+    <p>Your mods stay in control. ArtiMod never automatically bans anyone.</p>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">24/7</div><div class="stat-lbl">Always On</div></div>
+      <div class="stat-box"><div class="stat-num">&lt;1s</div><div class="stat-lbl">Response Time</div></div>
+      <div class="stat-box"><div class="stat-num">0</div><div class="stat-lbl">Auto Bans</div></div>
+    </div>
+  </div>
+  <div class="about-section">
+    <h2>What We Believe</h2>
+    <p>Good moderation protects a community without killing its energy. Servers should feel alive — passionate, real, unfiltered — without crossing into harassment or hate. That line exists, but a keyword list has never been able to find it accurately.</p>
+    <p>Context is everything. ArtiMod is built on that belief.</p>
+  </div>
+  <div class="about-section">
+    <h2>The Technology</h2>
+    <p>ArtiMod runs 24/7 on dedicated cloud infrastructure and is powered by Anthropic's Claude — the same AI trusted by some of the world's leading companies. It handles servers of any size, requires no ongoing maintenance, and gets more accurate as the underlying AI improves.</p>
+    <p>Setup takes under 60 seconds. Add the bot, run /setlogchannel, done.</p>
+  </div>
+  <div class="closing">ArtiMod. Because context matters.</div>
+  <div style="text-align:center;margin-top:8px;">
+    <a href="https://discord.com/oauth2/authorize?client_id=1484932978357436578&permissions=1099780130870&scope=bot+applications.commands" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Add ArtiMod — Free</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-left">
+    <a href="index.html" class="logo">ArtiMod</a>
+    <p>© 2026 ArtiMod. All rights reserved.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a><a href="dashboard.html">Dashboard</a>
+    <a href="tos.html">Terms</a><a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+</body>
+</html>

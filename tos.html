@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — ArtiMod</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --surface: #10141c;
+      --border: #1e2433;
+      --accent: #4f8ef7;
+      --accent-dim: rgba(79,142,247,0.12);
+      --accent-glow: rgba(79,142,247,0.25);
+      --text: #e2e8f4;
+      --text-muted: #6b7a99;
+      --text-dim: #3d4d6b;
+      --red: #f74f4f;
+      --green: #4ff7a0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* Background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Nav */
+    nav {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+
+    /* Header */
+    .page-header {
+      margin-bottom: 56px;
+    }
+
+    .page-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 .num {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    ul li {
+      color: var(--text-muted);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      font-weight: 300;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* Callout boxes */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--accent-dim);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+
+    .callout.warn {
+      border-color: #f7c44f;
+      background: rgba(247,196,79,0.08);
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Contact */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 48px;
+    }
+
+    .contact-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .nav-links a:first-child { margin-left: 0; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+  <a href="index.html" class="logo">ArtiMod</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="tos.html" class="active">Terms</a>
+    <a href="privacy.html" >Privacy</a>
+  </div>
+</nav>
+
+    <div class="page-header">
+      <div class="page-tag">Legal</div>
+      <h1>Terms of Service</h1>
+      <p class="meta">Last updated: March 21, 2026 &nbsp;·&nbsp; Effective immediately</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">01</span> Acceptance of Terms</h2>
+      <p>By adding ArtiMod to your Discord server or using any of its features, you agree to be bound by these Terms of Service. If you do not agree to these terms, you must remove the bot from your server immediately.</p>
+      <p>These terms apply to all users, server administrators, and moderators who interact with ArtiMod in any capacity.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">02</span> Description of Service</h2>
+      <p>ArtiMod is an AI-powered Discord moderation bot that provides the following services:</p>
+      <ul>
+        <li>Automated message moderation using AI context analysis</li>
+        <li>Detection and removal of hate speech, slurs, and harmful content</li>
+        <li>Link and advertisement filtering</li>
+        <li>Moderator tools including warnings, timeouts, kicks, and bans</li>
+        <li>Incident logging and reporting for server administrators</li>
+      </ul>
+      <div class="callout">
+        <p>ArtiMod is a moderation assistance tool. It does not replace human moderators and should not be treated as a complete moderation solution on its own.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">03</span> Permitted Use</h2>
+      <p>You may use ArtiMod for lawful moderation purposes on Discord servers you own or administer. You agree to:</p>
+      <ul>
+        <li>Use ArtiMod only on servers where you have appropriate authority</li>
+        <li>Configure the bot responsibly and in accordance with your server's community standards</li>
+        <li>Ensure your server's members are aware that AI-assisted moderation is in use</li>
+        <li>Review moderation actions and exercise human judgment in disputes</li>
+        <li>Comply with Discord's Terms of Service and Community Guidelines at all times</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">04</span> Prohibited Use</h2>
+      <p>You may not use ArtiMod to:</p>
+      <ul>
+        <li>Target, harass, or discriminate against users based on protected characteristics</li>
+        <li>Circumvent or abuse Discord's platform rules</li>
+        <li>Attempt to manipulate, reverse-engineer, or exploit the bot's AI systems</li>
+        <li>Use the bot for any illegal purpose or in violation of applicable laws</li>
+        <li>Intentionally trigger false positives to have legitimate messages removed</li>
+        <li>Use moderation data for purposes beyond server administration</li>
+      </ul>
+      <div class="callout warn">
+        <p>Violations of these terms may result in ArtiMod being removed from your server without notice.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">05</span> AI Moderation Accuracy — No Guarantee of Detection</h2>
+      <p>ArtiMod uses artificial intelligence to analyze message context. <strong>AI moderation is not infallible and is explicitly not guaranteed to detect, flag, or remove all harmful, offensive, illegal, or inappropriate content.</strong> By using ArtiMod, you expressly acknowledge and agree that:</p>
+      <ul>
+        <li>ArtiMod may fail to detect harmful content including but not limited to hate speech, threats, harassment, self-harm encouragement, illegal content, or any other prohibited material</li>
+        <li>ArtiMod may remove messages that do not violate any rules (false positives)</li>
+        <li>ArtiMod is an assistive tool only — it does not replace human moderation and must not be relied upon as a sole or primary moderation solution</li>
+        <li>Server administrators are solely and entirely responsible for all content posted in their servers, all moderation decisions made, and all outcomes resulting from the use or non-use of ArtiMod</li>
+        <li>You are responsible for maintaining adequate human moderation staffing regardless of ArtiMod's presence</li>
+        <li>No subscription tier guarantees complete or comprehensive moderation coverage</li>
+      </ul>
+      <div class="callout warn">
+        <p><strong>CRITICAL:</strong> ArtiMod must never be used as your only line of moderation defense. Server owners and administrators retain full legal and ethical responsibility for their communities at all times.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">06</span> Assumption of Risk</h2>
+      <p>By adding ArtiMod to your server, you fully and voluntarily assume all risks associated with AI-assisted moderation, including but not limited to:</p>
+      <ul>
+        <li>The risk that harmful, threatening, harassing, illegal, or offensive content will not be detected or removed by ArtiMod</li>
+        <li>The risk that ArtiMod will incorrectly remove legitimate messages</li>
+        <li>The risk of service outages, downtime, or degraded performance</li>
+        <li>The risk that ArtiMod's AI analysis may be incorrect, biased, or inaccurate</li>
+        <li>The risk of any harm — physical, emotional, financial, reputational, or otherwise — arising from content that ArtiMod failed to detect or act upon</li>
+        <li>The risk of any harm arising from ArtiMod's moderation actions or inactions</li>
+      </ul>
+      <p>You acknowledge that you have been fully informed of these risks and voluntarily accept them as a condition of using the service.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">07</span> Disclaimer of Warranties</h2>
+      <p>ARTIMOD IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:</p>
+      <ul>
+        <li>Any implied warranty of merchantability, fitness for a particular purpose, or non-infringement</li>
+        <li>Any warranty that the service will be uninterrupted, timely, secure, or error-free</li>
+        <li>Any warranty that results obtained from use of the service will be accurate, reliable, or complete</li>
+        <li>Any warranty that all harmful, illegal, or inappropriate content will be detected, flagged, or removed</li>
+        <li>Any warranty that the service will meet your requirements or expectations</li>
+      </ul>
+      <p>We make no warranty, representation, or guarantee regarding the effectiveness, accuracy, or completeness of ArtiMod's content moderation capabilities. The use of ArtiMod does not guarantee a safe, harassment-free, or legally compliant server environment. You rely on ArtiMod entirely at your own risk.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">08</span> Limitation of Liability</h2>
+      <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, ARTIMOD, ITS OPERATORS, OWNERS, DEVELOPERS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING FROM OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICE, INCLUDING BUT NOT LIMITED TO:</p>
+      <ul>
+        <li>Any direct, indirect, incidental, special, consequential, exemplary, or punitive damages</li>
+        <li>Any harm, injury, death, emotional distress, or psychological harm suffered by any person as a result of content that ArtiMod failed to detect, flag, or remove</li>
+        <li>Any harm arising from content that ArtiMod incorrectly removed or allowed to remain</li>
+        <li>Any financial loss, loss of revenue, loss of business, or loss of data</li>
+        <li>Any reputational harm arising from ArtiMod's moderation actions or inactions</li>
+        <li>Any legal liability, fines, or penalties arising from content posted in your server</li>
+        <li>Any claims brought by third parties arising from your use of the service</li>
+        <li>Service interruptions, outages, or downtime of any duration</li>
+        <li>Any unauthorized access to or alteration of your data</li>
+      </ul>
+      <p>THIS LIMITATION OF LIABILITY APPLIES REGARDLESS OF THE LEGAL THEORY UNDER WHICH DAMAGES ARE SOUGHT, WHETHER IN CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY, OR OTHERWISE, AND EVEN IF ARTIMOD HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+      <p>IN JURISDICTIONS THAT DO NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES, OUR LIABILITY SHALL BE LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW. IN NO EVENT SHALL OUR TOTAL AGGREGATE LIABILITY TO YOU EXCEED THE TOTAL AMOUNT YOU PAID FOR THE SERVICE IN THE THREE (3) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">09</span> Indemnification</h2>
+      <p>You agree to defend, indemnify, and hold harmless ArtiMod, its operators, owners, developers, employees, agents, and affiliates from and against any and all claims, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising from or related to:</p>
+      <ul>
+        <li>Your use of ArtiMod or any actions taken based on ArtiMod's moderation decisions</li>
+        <li>Any content posted in your server, whether or not detected by ArtiMod</li>
+        <li>Your failure to maintain adequate human moderation of your server</li>
+        <li>Your violation of these Terms of Service</li>
+        <li>Your violation of any applicable law, regulation, or third-party rights</li>
+        <li>Any claim by a third party arising from your use of the service</li>
+        <li>Any reliance on ArtiMod as a sole or primary moderation solution</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">10</span> Termination</h2>
+      <p>You may stop using ArtiMod at any time by removing it from your Discord server. We reserve the right to terminate access to ArtiMod for any server that violates these terms, engages in abuse, or uses the service in a manner harmful to others.</p>
+      <p>Upon termination, all data associated with your server may be deleted from our systems within 30 days.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">11</span> Changes to Terms</h2>
+      <p>We may update these Terms of Service from time to time. Continued use of ArtiMod after changes are posted constitutes acceptance of the revised terms. We will update the "Last updated" date at the top of this page when changes are made.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="num">12</span> Governing Law</h2>
+      <p>These terms are governed by the laws of the United States. Any disputes arising from these terms or your use of ArtiMod shall be resolved in accordance with applicable U.S. law.</p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Questions?</h3>
+      <p style="margin: 8px 0 12px;">If you have questions about these Terms of Service, reach out via Discord.</p>
+      <a href="privacy.html">→ Read our Privacy Policy</a>
+    </div>
+
+    <footer>
+      <span>© 2026 ArtiMod. All rights reserved.</span>
+      <div>
+        <a href="tos.html">Terms</a>
+        <a href="privacy.html" style="margin-left: 20px;">Privacy</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

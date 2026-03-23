@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — ArtiMod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .dash-hero{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 120px);padding:40px 24px;position:relative;z-index:1;}
+    .dash-box{text-align:center;max-width:560px;}
+    .dash-box .icon{font-size:52px;margin-bottom:22px;display:block;}
+    .dash-box h1{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:14px;}
+    .dash-box p{color:var(--muted);font-size:16px;font-weight:300;line-height:1.7;margin-bottom:36px;}
+    .feature-preview{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px;text-align:left;}
+    .fp-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 16px;display:flex;align-items:flex-start;gap:12px;}
+    .fp-icon{font-size:20px;flex-shrink:0;}
+    .fp-text strong{display:block;font-size:13px;font-weight:600;margin-bottom:2px;}
+    .fp-text span{font-size:12px;color:var(--muted);font-weight:300;}
+    .dash-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    @media(max-width:500px){.feature-preview{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">ArtiMod</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="https://discord.com/application-directory/1484932978357436578/store" class="nav-cta" target="_blank" rel="noopener noreferrer">Add to Discord</a>
+  </div>
+</nav>
+
+<div class="dash-hero">
+  <div class="dash-box">
+    <span class="icon">🖥️</span>
+    <div class="tag-label">Web Dashboard</div>
+    <h1>Manage ArtiMod from your browser.</h1>
+    <p>Login with Discord and configure your server's moderation settings, word lists, incident logs, and analytics — no slash commands required.</p>
+
+    <div class="feature-preview">
+      <div class="fp-item">
+        <div class="fp-icon">⚙️</div>
+        <div class="fp-text"><strong>Server Settings</strong><span>Configure log channels, context window, filters</span></div>
+      </div>
+      <div class="fp-item">
+        <div class="fp-icon">📋</div>
+        <div class="fp-text"><strong>Word Lists</strong><span>Add, remove, enable, disable with one click</span></div>
+      </div>
+      <div class="fp-item">
+        <div class="fp-icon">🚨</div>
+        <div class="fp-text"><strong>Incident Logs</strong><span>Browse full moderation history with AI reasoning</span></div>
+      </div>
+      <div class="fp-item">
+        <div class="fp-icon">📊</div>
+        <div class="fp-text"><strong>Analytics</strong><span>Trends, top offenders, daily charts (Enterprise)</span></div>
+      </div>
+    </div>
+
+    <div class="dash-btns">
+      <a href="https://dashboard.artimod.org" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+        Open Dashboard
+      </a>
+      <a href="index.html" class="btn btn-outline">Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <a href="index.html" class="logo">ArtiMod</a>
+    <p>© 2026 ArtiMod. All rights reserved.</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a><a href="dashboard.html">Dashboard</a>
+    <a href="tos.html">Terms</a><a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+</body>
+</html>
